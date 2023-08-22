@@ -1,6 +1,6 @@
-const db = require("../config/index"); //this imprt the db con from config
-const { bcrypt, compare, hashSync } = require("bcrypt");
-const { createToken } = require("../middleware/authentication");
+const db = require('../config/index'); //this imprt the db con from config
+const bcrypt = require('bcrypt');
+const { createToken } = require('../middleware/authentication');
 
 class Users {
     // Get all users
