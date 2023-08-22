@@ -23,7 +23,7 @@ routes.post('/add-user', bodyParser.json(), (req, res) => {
 })
 
 // Add a user route
-routes.post('/add-user', bodyParser.json(), (req, res) => {
+routes.post('/login', bodyParser.json(), (req, res) => {
     users.login(req, res)
 })
 
