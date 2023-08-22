@@ -38,29 +38,31 @@ class Users {
 
     // Register a user
     async register(req, res) {
-        const data = req.body;
-        //encrypt password
-        data.userPass = await hash(data.userPass, 15);
-        
+        const data = req.body 
+        // Encrypt password
+        data.userPass = await hash(data.userPass,15)
+        // Payload
         const user = {
-          emailAdd: data.emailAdd,
-          userPass
-          : data.userPass,
-        };
-        //query
+            emailAdd: data.emailAdd,
+            userPass: data.userPass
+        }
+        // Query
         const query = `
-          INSERT INTO Users
-          SET ?; 
-          `;
-        db.query(query, [data], (err) => {
-          if (err) {
-            throw err
-        } else {
-            //create a token
-          let token = createToken(user);
-          res.json({ status: res.statusCode, msg: "You are now registered." });
-            }
-        });
+        INSERT INTO Users
+        SET ?;
+        `
+        db.query(query,
+            [data], (err) => {
+            if(err) throw err 
+            // Create token
+            let token = createToken(user)
+            res.cookie("LegitUser", token, 
+            {
+                maxAge: 3600000,
+                httpOnly: true
+            })
+            res.json({ status: res.statusCode, msg: "You are now registered."})
+        })
     }
   
     // Login with a user
