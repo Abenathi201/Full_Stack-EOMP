@@ -38,7 +38,7 @@ routes.put('/users/:id', bodyParser.json(), (req, res) => {
 
 // Delete a users route
 routes.delete('/users/:id', (req, res) => {
-    products.deleteProduct(req, res)
+    users.deleteUser(req, res)
 })
 
 /*========== USERS Routes ==========*/
