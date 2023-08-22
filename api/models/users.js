@@ -39,8 +39,13 @@ class Users {
     // Register a user
     async register(req, res) {
         const data = req.body;
-        //encrypt password
-        data.userPass = await hash(data.userPass, 15);
+
+        if (!data.userPass) {
+          return res.json({ status: res.statusCode, msg: "Password is required." });
+        }
+      
+      // Encrypt password
+      data.userPass = await hash(data.userPass, 15);
         
         const user = {
           emailAdd: data.emailAdd,
