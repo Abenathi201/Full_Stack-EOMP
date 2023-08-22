@@ -5,7 +5,7 @@ const { createToken } = require("../middleware/authentication");
 class Users {
     getUsers(req, res) {
         const query = `
-            SELECT userID, firstName, lastName, userAge, gender, userRole,
+            SELECT userID, firstName, lastName, userAge, Gender, userRole,
             emailAdd, userPass, userProfile
             FROM Users;
         `;
@@ -20,7 +20,7 @@ class Users {
       
   getUser(req, res) {
     const query = `
-        SELECT userID, firstName, lastNmae,userAge, gender,userRole,
+        SELECT userID, firstName, lastName,userAge, Gender,userRole,
         emailAdd, userProfile
         FROM Users
         WHERE userId = ${req.params.id};
@@ -63,7 +63,7 @@ class Users {
     const { emailAdd, userPass } = req.body;
   
     const query = `
-      SELECT userID, firstName, lastName, userAge, gender, userRole,
+      SELECT userID, firstName, lastName, userAge, Gender, userRole,
       emailAdd, userPass, userProfile
       FROM Users
       WHERE emailAdd = ?;
