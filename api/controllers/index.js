@@ -5,7 +5,7 @@ const routes = express.Router();
 // Importing the models to use its database functions
 const {products, users} = require('../models')
 
-/*========== Products Routes ==========*/
+/*========== USERS Routes ==========*/
 
 // Get all users route
 routes.get('/users', (req, res) => {
@@ -41,7 +41,9 @@ routes.delete('/users/:id', (req, res) => {
     products.deleteProduct(req, res)
 })
 
-/*========== Products Routes ==========*/
+/*========== USERS Routes ==========*/
+
+//=========================================================================================
 
 /*========== Products Routes ==========*/
 
