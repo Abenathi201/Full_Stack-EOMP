@@ -14,7 +14,7 @@ class Users {
           if (err) {
             throw err
         } else {
-            res.json({ status: res.statusCode });
+            res.json({ status: res.statusCode, results });
         }
         });
       }
