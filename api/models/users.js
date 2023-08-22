@@ -116,6 +116,7 @@ class Users {
       });
     }
 
+    // Delete a user
     deleteUser(req, res) {
       const query = `
       DELETE FROM Users
