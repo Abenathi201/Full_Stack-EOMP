@@ -19,7 +19,7 @@ routes.get('/users/:id', (req, res) => {
 })
 
 // Add a user route
-routes.post('/add-user', bodyParser.json(), (req, res) => {
+routes.post('/sign-up', bodyParser.json(), (req, res) => {
     users.register(req, res)
 })
 
