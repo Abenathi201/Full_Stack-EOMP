@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const {verifyAToken} = require('../middleware/authentication')
 const routes = express.Router();
 
 // Importing the models to use its database functions
@@ -80,5 +81,6 @@ routes.delete('/products/:id', (req, res) => {
 
 module.exports = {
     express,
-    routes
+    routes,
+    verifyAToken
 }
