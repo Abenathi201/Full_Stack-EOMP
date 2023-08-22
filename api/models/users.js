@@ -38,30 +38,28 @@ class Users {
 
     // Register a user
     async register(req, res) {
-        const data = req.body 
-        // Encrypt password
-        data.userPass = await hash(data.userPass,15)
-        // Payload
+        const data = req.body;
+        //encrypt password
+        data.userPass = await hash(data.userPass, 10);
+        
         const user = {
-            emailAdd: data.emailAdd,
-            userPass: data.userPass
-        }
-        // Query
+          emailAdd: data.emailAdd,
+          userPass: data.userPass
+        };
+        
+        //query
         const query = `
-        INSERT INTO Users
-        SET ?;
-        `
-        db.query(query,
-            [data], (err) => {
-            if(err) throw err 
-            // Create token
-            let token = createToken(user)
-            res.cookie("LegitUser", token, 
-            {
-                maxAge: 3600000,
-                httpOnly: true
-            })
-            res.json({ status: res.statusCode, msg: "You are now registered."})
+          INSERT INTO Users
+          SET ?; 
+          `
+        db.query(query, [data], (err) => {
+          if (err) throw err;
+          //create a token
+          let token = createToken(user);
+          res.json({
+            status: res.statusCode,
+            msg: "You are now registered.",
+          })
         })
     }
   
