@@ -1,4 +1,5 @@
 <template>
+<SpinnerComp v-if="isLoading" />
     <div>
         <table>
             <thead>
@@ -15,9 +16,10 @@
     </div>
 </template>
 <script>
-import ProductAdmin from '@/components/ProductAdmin.vue'
+import ProductAdmin from '@/components/ProductAdmin.vue';
+import SpinnerComp from '@/components/SpinnerComp.vue';
 export default {
-    components: { ProductAdmin},
+    components: { ProductAdmin, SpinnerComp},
     computed: {
         products() {
             return this.$store.state.products;
@@ -26,6 +28,16 @@ export default {
     mounted() {
         this.$store.dispatch("getProducts")
     },
+    data() {
+    return {
+      isLoading: true,
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000);
+  }
 }
 </script>
 <style scoped>

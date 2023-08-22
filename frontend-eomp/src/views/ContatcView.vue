@@ -1,4 +1,5 @@
 <template>
+<SpinnerComp v-if="isLoading" />
     <div class="container">
         <div class="containe py-5 ">
         <div class="contact">
@@ -37,6 +38,7 @@
     </div>
 </template>
 <script>
+import SpinnerComp from '@/components/SpinnerComp.vue';
 export default {
     data() {
     return {

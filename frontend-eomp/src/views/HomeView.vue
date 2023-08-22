@@ -1,10 +1,11 @@
 <template>
+<SpinnerComp v-if="isLoading" />
   <div class="all">
     <div class="mb-3  d-flex flex-wrap landing justify-content-center">
     <div class="cards landing-pic-one">
       <div>
         <p class="text-white fs-3 fw-bold">Step up your scent game with sigma male perfumes.</p>
-        <button>Shop Now</button>
+        <button class="buttons">Shop Now</button>
       </div>
     </div>
     <div class="cards landing-pic-two">
@@ -26,6 +27,23 @@
   
   </div>
 </template>
+<script>
+import SpinnerComp from '@/components/SpinnerComp.vue'; 
+
+export default {
+  components: { SpinnerComp},
+  data() {
+    return {
+      isLoading: true,
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000);
+  }
+};
+</script>
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap');
 * {
@@ -47,6 +65,19 @@
     margin-right: 3rem;
     padding-block: 19rem;
     padding-inline: 3rem;
+  }
+  .buttons {
+    background-color: black;
+    border: none;
+    color: white;
+    font-weight: bold;
+  }
+  .buttons:hover {
+    background-color: white;
+    border: none;
+    letter-spacing: 5px;
+    color: black;
+    font-weight: bold;
   }
   .landing-pic-two {
     width: 600px;
