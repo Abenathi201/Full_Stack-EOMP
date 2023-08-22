@@ -1,5 +1,5 @@
 const db = require("../config/index"); //this imprt the db con from config
-const { hash, compare, hashSync } = require("bcrypt");
+const { bcrypt, compare, hashSync } = require("bcrypt");
 const { createToken } = require("../middleware/authentication");
 
 class Users {
@@ -39,28 +39,32 @@ class Users {
     // Register a user
     async register(req, res) {
         const data = req.body;
-        //encrypt password
-        data.userPass = await hash(data.userPass, 10);
-        
-        const user = {
-          emailAdd: data.emailAdd,
-          userPass: data.userPass
-        };
-        
-        //query
-        const query = `
-          INSERT INTO Users
-          SET ?; 
-          `
-        db.query(query, [data], (err) => {
-          if (err) throw err;
-          //create a token
-          let token = createToken(user);
-          res.json({
-            status: res.statusCode,
-            msg: "You are now registered.",
-          })
-        })
+
+        try {
+            const salt = await bcrypt.genSalt();
+            const passwordHash = await bcrypt.hash(data.userPass, salt);
+
+            const userData = {
+                emailAdd: data.emailAdd,
+                userPass: passwordHash
+            };
+
+            const query = `
+                INSERT INTO Users
+                SET ?;
+            `;
+
+            // Execute query
+            db.query(query, [userData], (err) => {
+                if (err) {
+                    res.status(500).send(err.toString());
+                } else {
+                    res.json({ status: res.statusCode, msg: "You are now registered." });
+                }
+            });
+        } catch (e) {
+            res.status(500).send(e.toString());
+        }
     }
   
     // Login with a user
