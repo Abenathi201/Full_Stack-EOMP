@@ -40,7 +40,7 @@ class Users {
     async register(req, res) {
         const data = req.body;
         //encrypt password
-        data.userPass = await hash(data.userPass, 10);
+        data.userPass = await hash(data.userPass, 15);
         
         const user = {
           emailAdd: data.emailAdd,
