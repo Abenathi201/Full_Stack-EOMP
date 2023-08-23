@@ -55,13 +55,29 @@ class Products {
         const query = `
         UPDATE Products
         SET ?
-        WHERE prodID = ?
+        WHERE prodID = ?;
         `
         db.query(query, [req.body, req.params.id], (err) => {
                 if(err) {
                     throw err
                 } else {
                     res.json({ status: res.statusCode, msg: "Product updated!" })
+            }
+        })
+    }
+
+    // Patch product
+    patchProduct(req, res) {
+        const query = `
+        UPDATE Products
+        SET ?
+        WHERE prodID = ?;
+        `
+        db.query(query, [data, id], (err) => {
+            if(err) {
+                throw err
+            } else {
+                res.json({ status: res.statusCode, msg: "Product updated!" })
             }
         })
     }
