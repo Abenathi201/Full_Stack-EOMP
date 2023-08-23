@@ -67,9 +67,9 @@ routes.put('/products/:id', bodyParser.json(), (req, res) => {
     products.updateProduct(req, res)
 })
 
-// Update a single route route
+// Patch a single route route
 routes.patch('/products/:id', bodyParser.json(), (req, res) => {
-    products.updateProduct(req, res)
+    products.patchProduct(req, res)
 })
 
 // Delete a product route
