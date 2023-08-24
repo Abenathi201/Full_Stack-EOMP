@@ -1,12 +1,11 @@
 <template>
     <tbody>
       <tr v-for="product in products" :key="product.prodID">
+        <td><img class="img" :src="product.prodUrl" alt=""></td>
         <td>{{ product.prodName }}</td>
-        <td>{{ product.quantity }}</td>
         <td>{{ product.amount }}</td>
         <td>{{ product.Category }}</td>
-        <td>{{ product.prodUrl }}</td>
-        
+        <td>{{ product.quantity }}</td>
         <!-- <td class="has-text-centered">
           <router-link :to="{ name: 'Edit', params: { id: product.productID } }" class="button is-info is-small">
             Edit
@@ -42,5 +41,9 @@ export default {
 };
 </script>
     
-<style>
+<style scoped>
+   .img {
+    width: 150px;
+    /* height: 150px; */
+   }
 </style>

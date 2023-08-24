@@ -16,9 +16,9 @@
     </div>
   </div>
   <div class="d-flex land flex-wrap mb-3 overflow-x-hidden">
-    <div class="crazy-about">
+    <router-link class="crazy-about text-decoration-none" :to="'/products'">
       <p class=" crazy text-uppercase fs-1 fw-bold text-white">#crazyaboutwatchwisp&wardrobeco.</p>
-    </div>
+    </router-link>
     <div class="shoe-display">
       <div class="shoes shoe-one"></div>
       <div class="shoes shoe-two"></div>
