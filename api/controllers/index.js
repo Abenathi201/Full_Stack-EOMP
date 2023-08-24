@@ -77,6 +77,11 @@ routes.delete('/products/:id', (req, res) => {
     products.deleteProduct(req, res)
 })
 
+// Search products
+routes.get('/search', (req, res) => {
+    products.searchProducts(req, res)
+})
+
 /*========== Products Routes ==========*/
 
 
@@ -85,3 +90,10 @@ module.exports = {
     routes,
     verifyAToken
 }
+
+// search route
+// routes.get("/search", (req,res) => {
+//     const keyword = `%${req.query.keyword}%`;
+
+//     const query = 
+// })

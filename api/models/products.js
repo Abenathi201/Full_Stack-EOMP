@@ -96,6 +96,20 @@ class Products {
             } 
         })
     }
+
+    searchProducts(req, res) {
+        const keyword = `%${req.res.keyword}%`;
+        const query = `SELECT * FROM Products WHERE prodName LIKE ?;`
+        
+        db.query(query, [keyword], (err, results) => {
+            if (err) {
+                console.error("Database query error", err);
+                res.status(500).json([]);
+            } else {
+                res.json(results)
+            }
+        })
+    }
 }
 
 module.exports = Products;
