@@ -6,6 +6,9 @@
         <td>{{ product.amount }}</td>
         <td>{{ product.Category }}</td>
         <td>{{ product.quantity }}</td>
+        <td>
+            <button @click="deleteProduct(product.prodID)">Delete</button>
+        </td>
         <!-- <td class="has-text-centered">
           <router-link :to="{ name: 'Edit', params: { id: product.productID } }" class="button is-info is-small">
             Edit
@@ -19,25 +22,19 @@
 <script>    
 export default {
     props: ["products"],
-
-//     methods : {
-//         async deleteProduct(id) {
-//     try {
-//       const response = await fetch(`http://localhost:3000/products/${id}`, {
-//         method: 'DELETE',
-//       });
-
-//       if (!response.ok) {
-//         throw new Error(`Failed to delete product. Status: ${response.status}`);
-//       }
-
-//       this.getProducts();
-//       this.$router.push("/admin")
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   },
-// }
+    methods: {
+        async deleteProduct(prodID) {
+            const confirmed = confirm("Are you sure you want to delete this product?");
+            if (confirmed) {
+                try {
+                    await this.$store.dispatch("deleteProduct", prodID);
+                    console.log("Product delted successfully");
+                } catch (error) {
+                    console.error("Error deleting product:", error);
+                }
+            }
+        },
+    },
 };
 </script>
     

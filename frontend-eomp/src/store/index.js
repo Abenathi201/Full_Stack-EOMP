@@ -14,7 +14,10 @@ export default createStore({
     },
     setProduct: (state, product) => {
       state.product = product;
-    }
+    },
+    setDelete: (state, deleteProduct) => {
+      state.deleteProduct = deleteProduct;
+    },
   },
   actions: {
     async getProducts(context) {
@@ -31,6 +34,22 @@ export default createStore({
       } catch (err) {
         context.commit("Failed to get products", err.message);
         console.log("Failed to get products", err.message);
+      }
+    },
+    async getProduct(context) {
+      try {
+        const response = await fetch(`${dbConnection}products/${prodID}`);
+        if(!response.ok) {
+          throw Error("Failed to fetch product");
+        } else {
+          const data = await response.json();
+          const product = data.result[0];
+          context.commit("setProduct", product);
+          console.log(product)
+        }
+      } catch (err) {
+        context.commit("Failed to get product", err.message);
+        console.log("Failed to get product", err.message);
       }
     },
     async addProduct(context, newProductData) {
@@ -50,6 +69,22 @@ export default createStore({
         console.log("Product added successfully!")
       } catch (error) {
         console.error("Error adding product:", error);
+      }
+    },
+    async deleteProduct(context, prodID) {
+      try {
+        context.commit("setDelete", null);
+        const response = await fetch(`${dbConnection}products/${prodID}`, {
+          method: "DELETE",
+        });
+        if (!response.ok) {
+          throw new Error(`failed to delete product. Status: ${response.status}`);
+        }
+        context.commit("removeProduct", prodID);
+        context.commit("setDelete", "success");
+      } catch (error) {
+        console.log("error deleting product:", error)
+        context.commit("setDelete", "error")
       }
     }
   },

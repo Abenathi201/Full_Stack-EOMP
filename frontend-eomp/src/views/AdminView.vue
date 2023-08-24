@@ -1,19 +1,5 @@
 <template>
 <SpinnerComp v-if="isLoading" />
-    <!-- <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product Name:</th>
-                    <th>Quantity:</th>
-                    <th>Amount:</th>
-                    <th>Category:</th>
-                    <th>Image:</th>
-                </tr>
-            </thead>
-            <ProductAdmin :products="products"/>
-        </table>
-    </div> -->
     <router-link :to="{ name: 'addThisProduct'}">Add New Product</router-link>
     <table id="product-table">
         <thead>
@@ -37,18 +23,20 @@ export default {
         },
     },
     mounted() {
-        this.$store.dispatch("getProducts")
+        this.$store.dispatch("getProducts").then(() => {
+            this.isLoading = false;
+        })
     },
     data() {
     return {
       isLoading: true,
     };
   },
-  mounted() {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 3000);
-  }
+//   mounted() {
+//     setTimeout(() => {
+//       this.isLoading = false;
+//     }, 3000);
+//   }
 }
 </script>
 <style scoped>

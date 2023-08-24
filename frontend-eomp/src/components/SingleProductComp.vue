@@ -1,6 +1,6 @@
 <template>
     <div class="single-view row">
-        <div class="product col-lg-8 col-md-7 col-12">
+        <div class="product col-lg-8 col-md-7 col-12" >
             <img src="https://i.postimg.cc/mkWcs4cv/G-Star-Fatigue-Meefic-Square-Quilted-Jacket.png" alt="">
         </div>
         <div class="description col-lg-4 col-md-5 col-12">

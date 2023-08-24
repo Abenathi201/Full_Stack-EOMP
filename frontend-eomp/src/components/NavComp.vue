@@ -33,6 +33,10 @@
 .header {
   font-family: montserrat;
 }
+.navbar-toggler {
+    border: solid !important;
+    color: white !important;
+}
    .navbar-nav {
     
     /* background-color: blue; */

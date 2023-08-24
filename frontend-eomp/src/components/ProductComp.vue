@@ -11,14 +11,11 @@
               <router-link class="details text-decoration-none" :to="'/singleProd'">View Details</router-link>
             </div>
             <div class="title-product">
-             <h3>{{ product.prodName }}</h3>
-            </div>
-            <div class="description-prod">
-              <p>Description Product tell me how to change playlist height size like 600px in html5 player. player good work now check this link</p>
+             <h3 class="bold">{{ product.prodName }}</h3>
             </div>
             <div class="card-footer">
               <div class="left"><span class="price">R {{ product.amount }}</span></div>
-              <div class="right"><a href="#" class="buy-btn"><i class="zmdi zmdi-shopping-basket"></i></a></div>
+              <div class="right buy-btn"></div>
             </div>
           </div>   
         </div>
@@ -35,9 +32,11 @@ export default {
 .product{
   background:#fff;
   padding:15px;
-  width: 400px;
+  font-family: montserrat;
+  width: 350px;
+  min-height: 300px;
   border-radius:6px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px black;
   position:relative;
   margin:20px auto;
 }
@@ -67,7 +66,7 @@ export default {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 .text{
-  padding-top:150%;
+  padding-top: 120%;
 }
 .text .category{
   text-align:center;
@@ -160,7 +159,7 @@ export default {
   font-weight:bold;
 }
 
-a.buy-btn{
+.buy-btn{
   display:block;
   color:#212121;
   text-align:center;
@@ -172,9 +171,9 @@ a.buy-btn{
   border:1px solid #212121;
   transition: all 0.2s ease-in-out;
 }
-a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
-  border-color: #FF9800;
-  background: #FF9800;
+.buy-btn:hover , .buy-btn:active, .buy-btn:focus{
+  border-color: black;
+  background: black;
   color: #fff;
   text-decoration:none;
 }
@@ -218,10 +217,6 @@ a.buy-btn:hover , a.buy-btn:active, a.buy-btn:focus{
 .product .text .category{
   margin-top: 0px;
 }
-a.buy-btn{
-  border-color: #FF9800;
-  background: #FF9800;
-  color: #fff;
-}
+
 }
 </style>
