@@ -21,7 +21,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.urlencoded({ extended: false }),cors(), routes);
+app.use(express.urlencoded({ extended: false }), routes);
+
+app.use(cors({
+  origin: 'https://full-stack-eomp-7rin.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 routes.get('^/$|/challenger', (req, res) => {
   res.sendFile(path.resolve(__dirname, './static/html/index.html'));
