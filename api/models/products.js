@@ -106,7 +106,7 @@ class Products {
                 console.error("Database query error", err);
                 res.status(500).json([]);
             } else {
-                res.json(results)
+                res.json({  status: res.statusCode, results  });
             }
         })
     }
