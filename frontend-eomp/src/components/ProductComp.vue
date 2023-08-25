@@ -1,6 +1,6 @@
 <template>
       <!-- <div class="col-md-3"> -->
-        <div class="product col-lg-4 col-md-4 col-12" v-for="product in products" :key="product.prodID">
+        <div class="mt-3 product col-lg-4 col-md-4 col-12" v-for="product in products" :key="product.prodID">
            
              <div class="img">
             <img class="img-fluid" :src="product.prodUrl" alt="product.prodName" />
@@ -8,10 +8,10 @@
           </div>
           <div class="text">
             <div class="category">
-              <router-link class="details text-decoration-none" :to="'/singleProd'">View Details</router-link>
+              <router-link class="details text-decoration-none" :to="{ name: 'singleProd', params: { prodID: product.prodID }}">View Details</router-link>
             </div>
             <div class="title-product">
-             <h3 class="bold">{{ product.prodName }}</h3>
+             <h3 class="bold text-wrap">{{ product.prodName }}</h3>
             </div>
             <div class="card-footer">
               <div class="left"><span class="price">R {{ product.amount }}</span></div>

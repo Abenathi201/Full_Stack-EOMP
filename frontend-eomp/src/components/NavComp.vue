@@ -42,11 +42,12 @@
     /* background-color: blue; */
    }
    .collapse {
-    /* background-color: bisque; */
     padding-inline: 23% !important;
    }
-   .nav-link:hover {
-    font-weight: bold !important;
+   @media screen and (max-width: 991px) {
+      .collapse {
+         padding-inline: 0 !important;
+      }
    }
    template {
     scroll-behavior: smooth;

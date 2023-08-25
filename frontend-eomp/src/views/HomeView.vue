@@ -2,13 +2,13 @@
 <SpinnerComp v-if="isLoading" />
   <div class="all">
     <div class="mb-3  d-flex flex-wrap landing justify-content-center">
-    <div class="cards landing-pic-one">
+    <div class="cards landing-pic-one mb-3">
       <div>
         <p class="text-white fs-3 fw-bold">Step up your scent game with sigma male perfumes.</p>
         <button class="buttons">Shop Now</button>
       </div>
     </div>
-    <div class="cards landing-pic-two">
+    <div class="cards landing-pic-two mb-3">
       <div>
         <p class="text-white fs-3 fw-bold">Step up your scent game with sigma male perfumes.</p>
         <button class="buttons">Shop Now</button>
@@ -82,7 +82,7 @@ export default {
   .landing-pic-two {
     width: 600px;
     height: 650px;
-    background-image: url(https://i.postimg.cc/k5VFMn4G/zara-man-800-black-perfume.jpg);
+    background-image: url(https://i.postimg.cc/YqrBgMMw/Dolce-Gabbana-SS22-01.jpg);
     background-position: center;
     background-size: cover;
     margin-left: 3rem;

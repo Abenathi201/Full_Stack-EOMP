@@ -1,7 +1,27 @@
 <template>
 <SpinnerComp v-if="isLoading" />
-    <router-link :to="{ name: 'addThisProduct'}">Add New Product</router-link>
-    <table id="product-table">
+    <div class="container d-flex justify-content-center">
+        <router-link class="button text-decoration-none px-3 py-2 text-white fw-bold" :to="{ name: 'add-user'}">Add New User</router-link>
+    </div>
+    <div class="product-tab">
+    <table class="mt-4 my-5" id="product-table">
+        <thead>
+            <th class="border-1 px-5">Image</th>
+            <th class="border-1 px-5">Name</th>
+            <th class="border-1 px-5">Surname</th>
+            <th class="border-1 px-5">Gender</th>
+            <th class="border-1 px-5">Role</th>
+            <th class="border-1 px-5">Email</th>
+        </thead>
+        <UserAdmin :users="users" />
+    </table>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+        <router-link class="button text-decoration-none px-3 py-2 text-white fw-bold" :to="{ name: 'addThisProduct'}">Add New Product</router-link>
+    </div>
+    <div class="product-tab">
+    <table class="mt-4 my-5" id="product-table">
         <thead>
             <th class="border-1 px-5">Image</th>
             <th class="border-1 px-5">Name</th>
@@ -11,20 +31,36 @@
         </thead>
         <ProductAdmin :products="products" />
     </table>
+    </div>
 </template>
 <script>
 import ProductAdmin from '@/components/ProductAdmin.vue';
+import UserAdmin from '@/components/UserAdmin.vue';
 import SpinnerComp from '@/components/SpinnerComp.vue';
 export default {
-    components: { ProductAdmin, SpinnerComp},
+    components: { ProductAdmin, UserAdmin, SpinnerComp},
     computed: {
         products() {
             return this.$store.state.products;
         },
+
+        users() {
+            return this.$store.state.users;
+        },
     },
     mounted() {
         this.$store.dispatch("getProducts").then(() => {
-            this.isLoading = false;
+            setTimeout(() => {
+                this.isLoading = false;
+            }, 3000);
+        });
+
+        this.$store.dispatch("getUsers")
+        .then(() => {
+            console.log('users fetched', this.users);
+        })
+        .catch(error => {
+            console.log("Failed to fetch users", error);
         })
     },
     data() {
@@ -32,11 +68,6 @@ export default {
       isLoading: true,
     };
   },
-//   mounted() {
-//     setTimeout(() => {
-//       this.isLoading = false;
-//     }, 3000);
-//   }
 }
 </script>
 <style scoped>
@@ -50,6 +81,10 @@ export default {
     input {
         width: 270px;
     }
+}
+.button {
+    background-color: black;
+    font-family: montserrat;
 }
 #addToStore {
     width: 10rem;
@@ -73,7 +108,7 @@ thead {
 table {
     margin: auto;
 }
-@media (max-width: 767px) {
+@media (max-width: 1025px) {
     #product-table thead {
       display: none;
     }

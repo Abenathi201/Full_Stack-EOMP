@@ -26,9 +26,19 @@ const routes = [
     component: () => import('../views/ContatcView.vue')
   },
   {
-    path: '/singleProd',
+    path: '/singleProd/:prodID',
     name: 'singleProd',
     component: () => import('../components/SingleProductComp.vue')
+  },
+  {
+    path: '/updateProd/:id',
+    name: 'updateProd',
+    component: () => import('../components/UpdateProduct.vue')
+  },
+  {
+    path: '/updateUser/:id',
+    name: 'updateUser',
+    component: () => import('../components/UpdateUser.vue')
   },
   {
     path: '/admin',
@@ -39,6 +49,11 @@ const routes = [
     path: '/addThisProduct',
     name: 'addThisProduct',
     component: () => import('../components/AddProduct.vue')
+  },
+  {
+    path: '/add-user',
+    name: 'add-user',
+    component: () => import('../components/AddUser.vue')
   }
 ]
 

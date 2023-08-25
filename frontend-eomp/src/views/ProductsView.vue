@@ -1,25 +1,36 @@
 <template>
-   <div v-if="products" class="mx-auto container prods row justify-content-center">
+  <SpinnerComp v-if="isLoading" />
+   <div class="mx-auto container prods row justify-content-center mb-5">
     <div class="d-flex justify-content-center container">
-        <p class="mx-3 fw-bold btn effect">Perfumes</p>
-        <p class="mx-3 fw-bold btn effect">Sneakers</p>
-        <p class="mx-3 fw-bold btn effect">Watches</p>
+      <button class="mx-3 fw-bold btn effect px-1">Perfumes</button>
+      <button class="mx-3 fw-bold btn effect px-1">Sneakers</button>
+      <button class="mx-3 fw-bold btn effect px-1">Watches</button>
     </div>
        <ProductComp class="" :products="products" />
     </div>
-   <div v-else>Loading..</div>
 </template>
 <script>
-import ProductComp from '@/components/ProductComp.vue'
+import ProductComp from '@/components/ProductComp.vue';
+import SpinnerComp from '@/components/SpinnerComp.vue';
+
 export default {
-    components: { ProductComp },
+    components: { ProductComp, SpinnerComp },
     computed: {
         products() {
             return this.$store.state.products;
         },
     },
     mounted() {
-        this.$store.dispatch("getProducts");
+        this.$store.dispatch("getProducts").then(() => {
+            setTimeout(() => {
+                this.isLoading = false;
+            }, 3000); 
+        });
+    },
+    data() {
+      return {
+        isLoading: true
+      }
     }
 }
 </script>
@@ -38,6 +49,30 @@ export default {
   text-decoration: none;
   text-transform: uppercase;
   width: 100%;
+}
+@media screen and (max-width: 500px) {
+  .btn {
+    letter-spacing: 0px;
+    font-size: small;
+    line-height: 15px;
+    max-width: fit-content;
+  }
+}
+@media screen and (max-width: 450px) {
+  .btn {
+    letter-spacing: 0px;
+    font-size: 10px;
+    line-height: 15px;
+    max-width: none;
+  }
+}
+@media screen and (max-width: 408px) {
+  .btn {
+    letter-spacing: 0px;
+    font-size: 7px;
+    line-height: 15px;
+    width: 100px;
+  }
 }
 .btn:hover {
   text-decoration: none;
