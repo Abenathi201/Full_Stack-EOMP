@@ -21,7 +21,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.urlencoded({ extended: false }), routes);
+app.use(
+  express.urlencoded({ extended: false }), 
+  cors(),
+  routes
+);
 
 // app.use(cors());
 
