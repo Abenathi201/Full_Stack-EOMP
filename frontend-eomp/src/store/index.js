@@ -202,7 +202,7 @@ async deleteUser(context, userID) {
 },
 async updateUser(context, user) {
   try {
-    const response = await fetch(`https://full-stack-eomp-7rin.onrender.com/products/${user.userID}`,
+    const response = await fetch(`https://full-stack-eomp-7rin.onrender.com/users/${user.userID}`,
     {
       method: 'PUT',
       headers: {

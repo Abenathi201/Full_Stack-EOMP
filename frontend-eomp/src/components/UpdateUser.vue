@@ -1,18 +1,40 @@
 <template>
-    <div v-if="user">
-        <input v-model="userData.firstName" :placeholder="user.firstName">
-        <input v-model="userData.lastName" :placeholder="user.lastName">
-        <input v-model="userData.userAge" :placeholder="user.userAge">
-        <input v-model="userData.Gender" :placeholder="user.Gender">
-        <input v-model="userData.userRole" :placeholder="user.userRole">
-        <input v-model="userData.emailAdd" :placeholder="user.emailAdd">
-        <input v-model="userData.userPass" :placeholder="user.userPass">
-        <input v-model="userData.userProfile" :placeholder="user.userProfile">
-        <button @click="updateUser">Update Product</button>
+  <div class="container mb-3">
+    <div v-if="user" class="row justify-content-center">
+      <div class="col-md-6">
+        <form>
+          <div class="mb-3">
+            <input v-model="userData.firstName" :placeholder="user.firstName" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <input v-model="userData.lastName" :placeholder="user.lastName" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <input v-model="userData.userAge" :placeholder="user.userAge" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <input v-model="userData.Gender" :placeholder="user.Gender" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <input v-model="userData.userRole" :placeholder="user.userRole" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <input v-model="userData.emailAdd" :placeholder="user.emailAdd" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <input v-model="userData.userPass" :placeholder="user.userPass" class="form-control" />
+          </div>
+          <div class="mb-3">
+            <input v-model="userData.userProfile" :placeholder="user.userProfile" class="form-control" />
+          </div>
+          <button @click="updateUser" class="border-0 bg-black fw-bold text-white">Update User</button>
+        </form>
+      </div>
     </div>
     <div v-else>
-        <Spinner/>
+      <Spinner />
     </div>
+  </div>
 </template>
 <script>
 import Spinner from './SpinnerComp.vue';
@@ -41,11 +63,26 @@ export default {
     },
     methods: {
         updateUser() {
-            this.$store.dispatch("updateUser", this.userData);
+            const componentContext = this;
+            this.$store.dispatch("updateUser", this.userData)
+                .then(() => {
+                    this.$store.commit("setUser", this.userData);
+                    this.$router.replace('/admin');
+                    // componentContext.$router.replace('/admin');
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         }
     },
     mounted() {
-        this.$store.dispatch("getUser", this.id);
+        const userID = this.$route.params.id
+        this.$store.dispatch("getUser", userID);
     },
 };
 </script>
+<style scoped>
+ .container {
+    font-family: montserrat;
+ }
+</style>
