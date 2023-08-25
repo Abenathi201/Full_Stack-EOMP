@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded({ extended: false }), routes);
 
-app.use(cors());
+// app.use(cors());
 
 routes.get('^/$|/challenger', (req, res) => {
   res.sendFile(path.resolve(__dirname, './static/html/index.html'));
